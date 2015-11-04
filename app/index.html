@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/angular/angular.js"></script>
+
+</head>
+<script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('MyCtrl', function ($scope,$http) {
+ $scope.name="Me";
+
+        $http.get("phones/other/Array.json").success(function(data,status,header,config){
+            $scope.phones=data;
+
+
+        });
+        console.log($scope.phones);
+
+    });
+
+</script>
+<body >
+<div ng-controller="MyCtrl">
+  <p>Nothing here {{4+8}}</p>
+<p>8+1= {{8+1}}</p>
+
+<ul>
+    <li ng-repeat="phone in phones">
+        <p>{{phone.name}}</p>
+    </li>
+    </ul>
+</div>
+</body>
+</html>
